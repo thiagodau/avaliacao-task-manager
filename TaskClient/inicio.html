@@ -4,8 +4,12 @@
     <title>Inicio</title>
     <!-- angular js -->
     <script src="js/angular/angular.min.js"></script>
+    
+    <script src="css/jquery-3.2.1.min.js"></script>
+    
     <!-- controller -->
     <script src="js/controllers/tarefas.js"></script>
+    
     <!--bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
@@ -18,6 +22,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -51,9 +56,9 @@
             <br><br><br>
             <div class="col-lg-8">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar por tarefa...">
+                <input type="text" class="form-control" ng-model="campoBusca" placeholder="Buscar por tarefa...">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Buscar</button>
+                  <button class="btn btn-default" ng-click="buscarTarefa()">Buscar</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
@@ -70,9 +75,9 @@
                     <p>{{ t.descricao }}</p>
                   </div>
                   <div class="col-lg-4">
-                    <a href="#" class="label label-success" id="btnConcluir" role="button">Concluir</a> 
-                    <a href="#" class="label label-warning" id="btnEditar" role="button">Editar</a>
-                    <a href="#" class="label label-danger" id="btnExcluir" role="button">Excluir</a>
+                    <a href="#" class="label label-success" role="button">Concluir</a> 
+                    <a href="#" class="label label-warning" role="button">Editar</a>
+                    <a href="#" class="label label-danger" ng-click="removerTarefa(t._id)" role="button">Excluir</a>
                   </div>
               </div>
             </div>

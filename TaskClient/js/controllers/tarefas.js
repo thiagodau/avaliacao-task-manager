@@ -27,4 +27,22 @@ app.controller('ctrlTarefas', function ($scope, $http) {
             $scope.erro = "Erro ao tentar cadastrar a tarefa!";
         });
     }
+
+    $scope.buscarTarefa = function() {
+        $http.get("http://localhost:3000/tarefas/" + $scope.campoBusca)
+        .then(function(response) {
+            $scope.tarefas = response.data;
+        });
+    }
+
+    $scope.removerTarefa = function(id) {
+        $http.delete("http://localhost:3000/tarefas/" + id)
+        .then(function (sucesso){
+            alert("Tarefa removida com sucesso!")
+        },
+        function (erro){
+            alert("Não foi possível remover a tarefa!")
+        });
+    }
+
 });
