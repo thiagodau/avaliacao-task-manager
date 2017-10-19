@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inicio</title>
+    <!-- angular js -->
+    <script src="js/angular/angular.min.js"></script>
+    <!-- controller -->
+    <script src="js/controllers/tarefas.js"></script>
+    <!--bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body ng-app="myAppA" ng-controller="ctrlTarefas" class="container-fluid ">
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar">a</span>
+                <span class="icon-bar">b</span>
+                <span class="icon-bar">c</span>
+              </button>
+              <a class="navbar-brand" href="#">Task Manager</a>
+            </div>
+          </div>
+        </nav>
+        <!--menu lateral-->
+        <div class="col-md-2">
+            <br><br><br>
+            <p>Navegação Prinpical</p>
+            <ul class="nav nav-pills nav-stacked">
+              <li role="presentation" class="active"><a href="inicio.html">Tarefas</a></li>
+              <li role="presentation"><a href="adicionarTarefa.html">Adicionar Tarefa</a></li>
+              <li role="presentation"><a href="#">Notificações<span class="badge">{{ qtdeNotificacoes }}</span></a></li>
+            </ul>
+        </div>
+        <!--body-->
+        <div class="col-md-10">
+            <br><br><br>
+            <div class="col-lg-8">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por tarefa...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Buscar</button>
+                </span>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-12"> <!-- tarefas -->
+              <h3>Minhas tarefas</h3>
+              <div class="thumbnail col-lg-12" ng-repeat="t in tarefas">
+                  <div class="col-lg-8">
+                      <h4>{{ t.titulo }}</h4>
+                  </div>
+                  <div class="col-lg-4">
+                      <p>{{ t.prazo }}</p>
+                  </div>
+                  <div class="col-lg-8">
+                    <p>{{ t.descricao }}</p>
+                  </div>
+                  <div class="col-lg-4">
+                    <a href="#" class="label label-success" id="btnConcluir" role="button">Concluir</a> 
+                    <a href="#" class="label label-warning" id="btnEditar" role="button">Editar</a>
+                    <a href="#" class="label label-danger" id="btnExcluir" role="button">Excluir</a>
+                  </div>
+              </div>
+            </div>
+
+        </div> <!-- fim body -->
+    </div>
+</body>
+</html>
