@@ -16,16 +16,16 @@ app.controller('ctrlTarefas', function ($scope, $http) {
             descricao: $scope.descricao,
             prioridade: $scope.prioridade,
             prazo: $scope.prazo
-        }
-
+        };
         $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
-        .then(function (sucesso) {
-            $scope.sucesso = "Tarefa cadastrada com sucesso!";
-            carregaTarefas();
-        },
-        function (erro) {
-            $scope.erro = "Erro ao tentar cadastrar a tarefa!";
-        });
+            .then(
+            function (sucesso) {
+                $scope.sucesso = "Tarefa cadastrada com sucesso!";
+                carregaTarefas();
+            },
+            function (erro) {
+                $scope.erro = "Erro ao tentar cadastrar a tarefa!";
+            });
     }
 
     $scope.buscarTarefa = function() {
@@ -35,14 +35,15 @@ app.controller('ctrlTarefas', function ($scope, $http) {
         });
     }
 
-    $scope.removerTarefa = function(id) {
+    $scope.remove = function(id) {
         $http.delete("http://localhost:3000/tarefas/" + id)
         .then(function (sucesso){
-            alert("Tarefa removida com sucesso!")
-        },
-        function (erro){
-            alert("Não foi possível remover a tarefa!")
-        });
+                alert("Tarefa removida com sucesso!")
+                carregaTarefas();
+            },
+            function (erro){
+                alert(id + " - Não foi possível remover a tarefa!")
+            });
     }
 
 });

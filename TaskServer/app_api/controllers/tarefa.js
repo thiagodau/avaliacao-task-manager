@@ -34,19 +34,19 @@ module.exports.salvarTarefa = function (req, res) {
         function (erro) {
             console.error(erro);
             res.status(500).json(erro);
-        });
+        }
+        );
 };
 
-module.exports.removerTarefa = function (id) {
-    var id = req.params._id;
-
-    Tarefa.remove({"_id": id}).exec()
+module.exports.remove = function (req, res) {
+    var _id = req.params.id;
+    Tarefa.remove({ "_id": _id }).exec()
         .then(
-        function (tarefas) {
+        function () {
             res.status(204).end();
         },
         function (erro) {
-            console.error(erro);
-            res.status(500).json(erro);
-        });
+            return console.error(erro);
+        }
+    );
 };

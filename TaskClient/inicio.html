@@ -4,7 +4,7 @@
     <title>Inicio</title>
     <!-- angular js -->
     <script src="js/angular/angular.min.js"></script>
-    
+    <!-- jquery -->
     <script src="css/jquery-3.2.1.min.js"></script>
     
     <!-- controller -->
@@ -58,10 +58,27 @@
               <div class="input-group">
                 <input type="text" class="form-control" ng-model="campoBusca" placeholder="Buscar por tarefa...">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" ng-click="buscarTarefa()">Buscar</button>
+                  <button class="btn btn-default" ng-click="buscarTarefa()">
+                    <span class="glyphicon glyphicon-search">
+                  </button>
                 </span>
               </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
+            </div><!-- /.col-lg-8 -->
+
+            <!-- menu de itens -->
+            <div class="col-lg-4">
+              <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="listarTodas()">
+                      <span class="glyphicon glyphicon-list">
+                    </button>
+                    <button class="btn btn-default" ng-click="listarTodas()">
+                      <span class="glyphicon glyphicon-list">
+                    </button>
+                  </span>
+              </div>
+            </div>
+
             <div class="col-lg-12"> <!-- tarefas -->
               <h3>Minhas tarefas</h3>
               <div class="thumbnail col-lg-12" ng-repeat="t in tarefas">
@@ -69,7 +86,7 @@
                       <h4>{{ t.titulo }}</h4>
                   </div>
                   <div class="col-lg-4">
-                      <p>{{ t.prazo }}</p>
+                      <span class="glyphicon glyphicon-time">{{ t.prazo }}</span>
                   </div>
                   <div class="col-lg-8">
                     <p>{{ t.descricao }}</p>
@@ -77,7 +94,7 @@
                   <div class="col-lg-4">
                     <a href="#" class="label label-success" role="button">Concluir</a> 
                     <a href="#" class="label label-warning" role="button">Editar</a>
-                    <a href="#" class="label label-danger" ng-click="removerTarefa(t._id)" role="button">Excluir</a>
+                    <a href="#" class="label label-danger" ng-click="remove(t._id)" role="button">Excluir</a>
                   </div>
               </div>
             </div>
