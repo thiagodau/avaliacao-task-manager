@@ -1,7 +1,7 @@
 var Tarefa = require('../models/tarefas');
 
 module.exports.buscaTodos = function (req, res) {
-    Tarefa.find().sort({nomeTarefa: 1}).exec()
+    Tarefa.find().sort({titulo: 1}).exec()
         .then(
         function (tarefas) {
             res.json(tarefas);
@@ -49,4 +49,25 @@ module.exports.remove = function (req, res) {
             return console.error(erro);
         }
     );
+};
+
+module.exports.notificacoes = function (req, res) {
+    Tarefa.find().sort({prazo: 1, prioridade: -1}).exec()
+        .then(
+        function (tarefas) {
+            res.json(tarefas);
+        },
+        function (error) {
+            res.status(500).json(error);
+        });
+};
+
+module.exports.qtdeNotificacoes = function (req, res) {
+    Tarefa.find().count()
+        .then(function (response) {
+            res.json(response)
+        },
+        function (error) {
+            res.status(500).json(error);
+        });
 };

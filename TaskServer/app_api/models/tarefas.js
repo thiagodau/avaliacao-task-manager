@@ -16,6 +16,10 @@ var tarefa = new mongoose.Schema({
     prazo: {
         type: Date,
         required: false
+    },
+    concluido: {
+        type: Boolean,
+        required: true
     }
 });
 

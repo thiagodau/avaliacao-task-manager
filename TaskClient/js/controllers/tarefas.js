@@ -6,16 +6,25 @@ app.controller('ctrlTarefas', function ($scope, $http) {
                 $scope.tarefas = response.data;
             });
     };
-
+    
     carregaTarefas();
+
     $scope.qtdeNotificacoes = 0;
+    var carregaQtdeNotificacoes = function () {
+        $http.get("http://localhost:3000/tarefas/qtdeNotificacoes")
+            .then(function (response) {
+                $scope.qtdeNotificacoes = response.data;
+            });
+    };
+    carregaQtdeNotificacoes();
 
     $scope.salvarTarefa = function() {
         var dados = {
             titulo: $scope.titulo,
             descricao: $scope.descricao,
             prioridade: $scope.prioridade,
-            prazo: $scope.prazo
+            prazo: $scope.prazo,
+            concluido: false
         };
         $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
             .then(
@@ -44,6 +53,20 @@ app.controller('ctrlTarefas', function ($scope, $http) {
             function (erro){
                 alert(id + " - Não foi possível remover a tarefa!")
             });
+    }
+
+    $scope.listarTodas = function (){
+        $http.get("http://localhost:3000/tarefas")
+        .then(function (response) {
+            $scope.tarefas = response.data;
+        });
+    }
+
+    $scope.notificacoes = function (){
+        $http.get("http://localhost:3000/tarefas/notificacoes")
+        .then(function (response) {
+            $scope.tarefas = response.data;
+        });
     }
 
 });

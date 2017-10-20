@@ -48,12 +48,13 @@
             <ul class="nav nav-pills nav-stacked">
               <li role="presentation" class="active"><a href="inicio.html">Tarefas</a></li>
               <li role="presentation"><a href="adicionarTarefa.html">Adicionar Tarefa</a></li>
-              <li role="presentation"><a href="#">Notificações<span class="badge">{{ qtdeNotificacoes }}</span></a></li>
+              <!--<li role="presentation"><a href="#">Notificações<span class="badge">{{ qtdeNotificacoes }}</span></a></li>-->
             </ul>
         </div>
         <!--body-->
         <div class="col-md-10">
             <br><br><br>
+            <!-- Input buscar -->
             <div class="col-lg-8">
               <div class="input-group">
                 <input type="text" class="form-control" ng-model="campoBusca" placeholder="Buscar por tarefa...">
@@ -72,8 +73,8 @@
                     <button class="btn btn-default" ng-click="listarTodas()">
                       <span class="glyphicon glyphicon-list">
                     </button>
-                    <button class="btn btn-default" ng-click="listarTodas()">
-                      <span class="glyphicon glyphicon-list">
+                    <button class="btn btn-default" ng-click="notificacoes()">
+                        <span class="badge glyphicon glyphicon-bell"> {{ qtdeNotificacoes }}</span>
                     </button>
                   </span>
               </div>
@@ -86,14 +87,16 @@
                       <h4>{{ t.titulo }}</h4>
                   </div>
                   <div class="col-lg-4">
-                      <span class="glyphicon glyphicon-time">{{ t.prazo }}</span>
+                    <span class="glyphicon glyphicon-time">{{ t.prazo }}</span>
+                    <p>{{expirado}}</p>
                   </div>
                   <div class="col-lg-8">
                     <p>{{ t.descricao }}</p>
+                    <p>Prioridade: {{t.prioridade}} </p>
                   </div>
                   <div class="col-lg-4">
                     <a href="#" class="label label-success" role="button">Concluir</a> 
-                    <a href="#" class="label label-warning" role="button">Editar</a>
+                    <a href="#" class="label label-warning" ng-click="" role="button">Editar</a>
                     <a href="#" class="label label-danger" ng-click="remove(t._id)" role="button">Excluir</a>
                   </div>
               </div>
