@@ -8,5 +8,8 @@ router.get('/tarefas/qtdeNotificacoes', ctrlTarefas.qtdeNotificacoes);
 router.get('/tarefas/:titulo', ctrlTarefas.buscarTarefa);
 router.post('/tarefas', ctrlTarefas.salvarTarefa);
 router.delete('/tarefas/:id', ctrlTarefas.remove);
+router.put('/tarefas', ctrlTarefas.atualizarTarefa);
+router.put('/tarefas/concluir/:concluido', ctrlTarefas.concluirTarefa);
+
 
 module.exports = router;

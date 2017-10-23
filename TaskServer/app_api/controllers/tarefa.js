@@ -1,7 +1,7 @@
 var Tarefa = require('../models/tarefas');
 
 module.exports.buscaTodos = function (req, res) {
-    Tarefa.find().sort({titulo: 1}).exec()
+    Tarefa.find({'concluido': {$ne : true}}).sort({prazo: 1, prioridade: -1}).exec()
         .then(
         function (tarefas) {
             res.json(tarefas);
@@ -9,6 +9,19 @@ module.exports.buscaTodos = function (req, res) {
         function (error) {
             res.status(500).json(error);
         });
+};
+
+module.exports.concluirTarefa = function (req, res) {
+    var conc = req.params.concluido;
+    Tarefa.update({'concluido': conc},{$set:{'concluido': true}}).exec()
+        .then(
+            function (tarefa) {
+                res.json(tarefa);
+            },
+            function (erro) {
+                return console.error(erro);
+            } 
+        );
 };
 
 module.exports.buscarTarefa = function (req, res) {
@@ -36,6 +49,19 @@ module.exports.salvarTarefa = function (req, res) {
             res.status(500).json(erro);
         }
         );
+};
+
+module.exports.atualizarTarefa = function (req, res) {
+    Tarefa.update(req.body)
+        .then(
+            function (tarefa) {
+                res.json(tarefa);
+            },
+            function (erro) {
+                console.error(erro);
+                res.status(500).json(erro);
+            }
+        )
 };
 
 module.exports.remove = function (req, res) {

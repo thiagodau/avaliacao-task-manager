@@ -23,7 +23,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body ng-app="myAppA" ng-controller="ctrlTarefas" class="container-fluid ">
@@ -87,19 +86,64 @@
                       <h4>{{ t.titulo }}</h4>
                   </div>
                   <div class="col-lg-4">
-                    <span class="glyphicon glyphicon-time">{{ t.prazo }}</span>
+                    <span class="glyphicon glyphicon-time" id="idPrazo">{{ t.prazo }}</span>
                     <p>{{expirado}}</p>
                   </div>
                   <div class="col-lg-8">
                     <p>{{ t.descricao }}</p>
                     <p>Prioridade: {{t.prioridade}} </p>
+                    <p>Concluido: {{t.concluido}} </p>
                   </div>
                   <div class="col-lg-4">
-                    <a href="#" class="label label-success" role="button">Concluir</a> 
-                    <a href="#" class="label label-warning" ng-click="" role="button">Editar</a>
+                    <a href="#" class="label label-success" role="button" ng-click="concluirTarefa(t.concluido)">Concluir</a> 
+                    <!-- Button trigger modal -->
+                    <button type="button" class="label label-warning" ng-click="editarTarefa(t._id,t.titulo,t.prazo,t.descricao,t.prioridade)" data-toggle="modal" data-target="#myModal">
+                      Editar
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Editar tarefa</h4>
+                          </div>
+                            <!-- form aqui -->
+                            <div class="col-md-12">
+                              <p ng-show="erro" class="alert alert-danger">{{erro}}</p> <!-- mensagem de alerta -->
+                              <p ng-show="sucesso" class="alert alert-success">{{sucesso}}</p> <!-- mensagem de alerta -->                              
+
+                              <form ng-submit="atualizarTarefa()">
+                                  <div class="form-group col-lg-8">
+                                      Titulo:<input class="form-control" ng-model="cTitulo"/>
+                                  </div>
+                                  <div class="form-group col-lg-2">
+                                      Prazo:<input class="form-control" type="date" ng-model="cPrazo">
+                                  </div>
+                                  <div class="form-group col-lg-8">
+                                      Descrição:<textarea class="form-control" ng-model="cDescricao" name="cDescricao" rows="8"></textarea>
+                                  </div>
+                                  <div class="form-group col-lg-1">
+                                      Prioridade:<input class="form-control" type="number" min="1" max="5" ng-model="cPrioridade" name="cPrioridade">
+                                  </div>
+                                  <div class="form-group col-lg-12">
+                                      <input class="btn btn-info" type="submit" value="Atualizar"/>
+                                      <input class="btn btn-default" type="reset" value="Limpar"/>
+                                  </div>
+                              </form>
+                            </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- FIM MODAL -->
+
                     <a href="#" class="label label-danger" ng-click="remove(t._id)" role="button">Excluir</a>
                   </div>
               </div>
+
             </div>
 
         </div> <!-- fim body -->
