@@ -24,6 +24,20 @@ module.exports.concluirTarefa = function (req, res) {
         );
 };
 
+module.exports.atualizarTarefa = function (req, res) {
+    var _id = req.params.id;
+    Tarefa.update({'_id': _id}, {$set: {'titulo': req.params.titulof, 'prazo': req.params.prazof, 
+    'descricao': req.params.descricaof, 'prioridade': req.params.prioridadef}}).exec()
+        .then(
+            function(tarefa){
+                res.json(tarefa);
+            }, 
+            function(erro){
+                res.status(500).json(erro);
+            }
+        );
+};
+
 module.exports.buscarTarefa = function (req, res) {
     var titulo = req.params.titulo;
 
@@ -39,6 +53,7 @@ module.exports.buscarTarefa = function (req, res) {
 };
 
 module.exports.salvarTarefa = function (req, res) {
+    
     Tarefa.create(req.body)
         .then(
         function (tarefa) {
@@ -49,19 +64,6 @@ module.exports.salvarTarefa = function (req, res) {
             res.status(500).json(erro);
         }
         );
-};
-
-module.exports.atualizarTarefa = function (req, res) {
-    Tarefa.update(req.body)
-        .then(
-            function (tarefa) {
-                res.json(tarefa);
-            },
-            function (erro) {
-                console.error(erro);
-                res.status(500).json(erro);
-            }
-        )
 };
 
 module.exports.remove = function (req, res) {
@@ -78,7 +80,7 @@ module.exports.remove = function (req, res) {
 };
 
 module.exports.notificacoes = function (req, res) {
-    Tarefa.find().sort({prazo: 1, prioridade: -1}).exec()
+    Tarefa.find({'concluido': true}).sort({prazo: 1, prioridade: -1}).exec()
         .then(
         function (tarefas) {
             res.json(tarefas);
@@ -89,7 +91,7 @@ module.exports.notificacoes = function (req, res) {
 };
 
 module.exports.qtdeNotificacoes = function (req, res) {
-    Tarefa.find().count()
+    Tarefa.find({'concluido': true}).count()
         .then(function (response) {
             res.json(response)
         },

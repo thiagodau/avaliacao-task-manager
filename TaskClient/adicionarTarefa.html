@@ -6,23 +6,18 @@
     <script src="js/angular/angular.min.js"></script>
     <!-- jquery -->
     <script src="css/jquery-3.2.1.min.js"></script>
-    
     <!-- controller -->
     <script src="js/controllers/tarefas.js"></script>
-    
     <!--bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
     integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 </head>
 
 <body ng-app="myAppA" ng-controller="ctrlTarefas" class="container-fluid">
@@ -65,7 +60,7 @@
                                   Titulo:<input class="form-control" ng-model="titulo"/>
                               </div>
                               <div class="form-group col-lg-2">
-                                  Prazo:<input class="form-control" type="date" ng-model="prazo" value="09-02-2014">
+                                  Prazo:<input class="form-control" type="date" ng-model="prazo">
                               </div>
                               <div class="form-group col-lg-8">
                                   Descrição:<textarea class="form-control" ng-model="descricao" name="descricao" rows="8"></textarea>
