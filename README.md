@@ -1,7 +1,7 @@
 # avaliacao-task-manager
 Avaliacao Task Manager
 
-#funcionando
+#Feito
 Adicionar
 Excluir
 Campo Busca
@@ -11,12 +11,8 @@ Concluido
 Editar
 testes
 duplicar (funcionalidade ex)
-
-#alterado
-funcionamento do botao Editar
-
-#fazendo
-flag de alerta, que e a validacao da tarefa referente ao prazo de conclusao
+Rota de buscar tarefa por Id
+Algumas correções
 
 outros...
 - flag de alerta
