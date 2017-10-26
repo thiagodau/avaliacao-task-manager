@@ -26,19 +26,43 @@ app.controller('ctrlTarefas', function ($scope, $http) {
     };
     carregaQtdeNotificacoes();
 
+    $scope.duplicarTarefa = function(titulo, descricao, prazo, prioridade) {
+        var dados = {
+            titulo: titulo + " - Cópia",
+            descricao,
+            prioridade,
+            prazo,
+            concluido: false,
+            expirado: false
+        };
+
+        $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
+        .then(
+        function (sucesso) {
+            alert("Tarefa duplicada!")
+            carregaTarefas();
+            carregaQtdeNotificacoes();
+        },
+        function (erro) {
+            alert("Erro ao tentar duplicar a tarefa!");
+        });
+        
+    }
+    
     $scope.salvarTarefa = function() {
         var dados = {
             titulo: $scope.titulo,
             descricao: $scope.descricao,
             prioridade: $scope.prioridade,
             prazo: $scope.prazo,
-            concluido: false
+            concluido: false,
+            expirado: false
         };
         $http.post("http://localhost:3000/tarefas/", JSON.stringify(dados))
             .then(
             function (sucesso) {
-                $scope.sucesso = "Tarefa cadastrada com sucesso!";
-     
+                alert("Tarefa cadastrada com sucesso!");
+                window.location.href = "inicio.html";
             },
             function (erro) {
                 $scope.erro = "Erro ao tentar cadastrar a tarefa!";
@@ -68,7 +92,7 @@ app.controller('ctrlTarefas', function ($scope, $http) {
         $http.delete("http://localhost:3000/tarefas/" + id)
         .then(function (sucesso){
                 alert("Tarefa removida com sucesso!")
-                //carregaTarefas();
+                carregaTarefas();
                 carregaQtdeNotificacoes();
             },
             function (erro){
@@ -89,17 +113,19 @@ app.controller('ctrlTarefas', function ($scope, $http) {
         $scope.descricaof = descricao;
         $scope.prazof = prazo;
         $scope.prioridadef = prioridade;
-        //alert(id)
     }
+    
     $scope.atualizarTarefa = function (id, titulof, prazof, descricaof, prioridadef) {
-        //alert(id)
         $http.put("http://localhost:3000/tarefas/"+id+"/"+titulof+"/"+prazof+"/"+descricaof+"/"+prioridadef)
             .then(
             function (sucesso) {
-                $scope.sucesso = "Tarefa alterada com sucesso!";
+                alert("Atualizado com sucesso!")
             },
             function (erro) {
                 $scope.erro = "Erro ao tentar alterar a tarefa!";
             });
+            carregaTarefas();
+            carregaQtdeNotificacoes();
+        window.location.href = "inicio.html";               
     }
 });

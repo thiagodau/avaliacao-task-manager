@@ -22,6 +22,7 @@
 
 <body ng-app="myAppA" ng-controller="ctrlTarefas" class="container-fluid ">
     <div class="row">
+      <!-- topo -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +37,6 @@
             <ul class="nav nav-pills nav-stacked">
               <li role="presentation" class="active"><a href="inicio.html">Tarefas</a></li>
               <li role="presentation"><a href="adicionarTarefa.html">Adicionar Tarefa</a></li>
-              <!--<li role="presentation"><a href="#">Notificações<span class="badge">{{ qtdeNotificacoes }}</span></a></li>-->
             </ul>
         </div>
         <!--body-->
@@ -76,16 +76,19 @@
                   </div>
                   <div class="col-lg-4">
                     <span class="glyphicon glyphicon-time" id="idPrazo">Prazo: {{ t.prazo | date: 'dd/MM/yyyy' }}</span>
-                    <p>{{expirado}}</p>
+                    <!--<p>{{t.expirado}}</p>-->
                   </div>
                   <div class="col-lg-8">
                     <p>{{ t.descricao }}</p>
                     <p>Prioridade: {{t.prioridade}} </p>
                   </div>
                   <div class="col-lg-4">
-                    <a href="#" class="label label-success" role="button" ng-click="concluirTarefa(t.concluido)">Concluir</a> 
-                    <!-- Button trigger modal -->
-                    <a href="#" class="label label-warning" data-toggle="modal" ng-click="editarTarefa(t._id, t.titulo, t.descricao, t.prazo, t.prioridade)" data-target="#myModal">Editar</a>
+                      <div class="btn-group-xs" role="group" aria-label="...">
+                          <button type="button" class="btn btn-success" ng-click="concluirTarefa(t.concluido)"><span class="glyphicon glyphicon-ok"/><p>Concluir</p></button>
+                          <button type="button" class="btn btn-default" ng-click="duplicarTarefa(t.titulo, t.descricao, t.prazo, t.prioridade)"><span class="glyphicon glyphicon-duplicate"/><p>Duplicar</p></button>
+                          <button type="button" class="btn btn-warning" data-toggle="modal" ng-click="editarTarefa(t._id, t.titulo, t.descricao, t.prazo, t.prioridade)" data-target="#myModal"><span class="glyphicon glyphicon-pencil"/><p>Editar</p></button>
+                          <button type="button" class="btn btn-danger" ng-click="remove(t._id)"><span class="glyphicon glyphicon-trash"/><p>Excluir</p></button>
+                        </div>
                     <!-- MODAL -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
@@ -125,7 +128,6 @@
                       </div>
                     </div>
                     <!-- FIM MODAL -->
-                    <a href="#" class="label label-danger" ng-click="remove(t._id)" role="button">Excluir</a>
                   </div>
               </div>
 

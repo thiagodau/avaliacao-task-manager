@@ -20,6 +20,10 @@ var tarefa = new mongoose.Schema({
     concluido: {
         type: Boolean,
         required: true
+    },
+    expirado: {
+        type: Boolean,
+        required: true
     }
 });
 

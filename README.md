@@ -6,9 +6,15 @@ Adicionar
 Excluir
 Campo Busca
 Botao Listar Todos
-Botao Tarefas Concluidas
+Botao Tarefas Concluidas (funcionalidade ex)
 Concluido
 Editar*
+algumas validacoes
+testes
+duplicar (funcionalidade ex)
+
+#alterado
+estilo de botões de ação
 
 #fazendo
 
@@ -17,6 +23,3 @@ Notificações: span de notificações esta funcionando a comunicação e pegand
 
 outros...
 - flag de alerta
-- paginacao
-- algumas validacoes
-- testes
