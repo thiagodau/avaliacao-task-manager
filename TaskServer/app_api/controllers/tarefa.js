@@ -11,6 +11,18 @@ module.exports.buscaTodos = function (req, res) {
         });
 };
 
+module.exports.buscarPorId = function (req, res) {
+    var _id = req.params._id;
+    Tarefa.find({'_id': _id}).exec()
+        .then(
+        function (tarefas) {
+            res.json(tarefas);
+        },
+        function (error) {
+            res.status(500).json(error);
+        });
+};
+
 module.exports.concluirTarefa = function (req, res) {
     var conc = req.params.concluido;
     Tarefa.update({'concluido': conc},{$set:{'concluido': true}}).exec()
